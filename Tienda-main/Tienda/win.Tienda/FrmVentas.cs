@@ -8,22 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ventas
+namespace win.Tienda
 {
-    public partial class Form1 : Form
+    public partial class FrmVentas : Form
     {
-        public Form1()
+        public FrmVentas()
         {
             InitializeComponent();
         }
 
-        
-
-      
-
-        private void button2_Click_1(object sender, EventArgs e)
+        private void FrmNuVentas_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("La confianza en ti mismo es el secreto del exito");
+
         }
     }
 }
