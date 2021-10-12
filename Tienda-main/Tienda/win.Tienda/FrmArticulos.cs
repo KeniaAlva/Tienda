@@ -16,5 +16,10 @@ namespace win.Tienda
         {
             InitializeComponent();
         }
+
+        private void FrmArticulos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
