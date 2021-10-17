@@ -10,7 +10,7 @@ namespace BLTienda
     public class ProductosBL
     {
         /*Creacion de Lista Binding (arreglo) para los productos*/
-       public BindingList<Producto> ListaProductos { get; set; }
+        public BindingList<Producto> ListaProductos { get; set; }
 
         public ProductosBL()
         {
@@ -19,12 +19,12 @@ namespace BLTienda
 
             /*Instanciamos productos en la lista y colocamos todos 
              los datos del producto en sus propiedades.*/
-             
+
             //Producto1
             var Producto1 = new Producto();
             Producto1.ID = 1;
             Producto1.Descripcion = "Camisetas";
-            Producto1. Precio = 65;
+            Producto1.Precio = 65;
             Producto1.Existencia = 100;
             Producto1.Activo = true;
 
@@ -60,15 +60,53 @@ namespace BLTienda
 
             ListaProductos.Add(Producto4);
 
-        /*Obtencion de Productos*/
+            /*Obtencion de Productos*/
         }
         public BindingList<Producto> ObtenerProductos()
         {
             return ListaProductos;
         }
+        /*Creacion de una clase para guardar los productos, el cual se recibira un producto con parametro YA*/
 
+        public bool GuardarProducto(Producto producto)
+        {
+            if (producto.ID == 0)
+            {
+                /*Funcion max se encarga de buscar  todos los productos y calcula el maximo id que encuentra*/
+                producto.ID = ListaProductos.Max(item => item.ID) + 1;
+            }
+            return true;
+        }
+
+        /*Agregar producto lo agregamos a producto bl  en una clase Yorlany Alva*/
+
+        public void AgregarProducto()
+        {
+            var nuevoProducto = new Producto();
+            ListaProductos.Add(nuevoProducto);
+        }
+
+        /*Creamos una clase para eliminar producto Ya*/
+
+        public bool EliminarProducto(int id)
+        {
+
+            foreach (var producto in ListaProductos)
+            {
+                if (producto.ID == id)
+                {
+                    ListaProductos.Remove(producto);
+                    return true;
+
+                }
+            }
+
+
+            return false;
+        }
+    }
         /*Propiedades de los productos*/
-      }
+    }
     public class Producto
     {
         public int ID { get; set; }
@@ -77,5 +115,5 @@ namespace BLTienda
         public int Existencia { get; set; }
         public bool Activo { get; set; }
       }
-   }
+   
     
