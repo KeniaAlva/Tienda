@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "win.Tienda", "win.Tienda\win.Tienda.csproj", "{A873263D-A73D-4A1D-A4A4-88985ABF2363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLTienda", "BLTienda\BLTienda.csproj", "{80ABB2BA-D8D3-493F-90A8-0405B0415CD1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{A873263D-A73D-4A1D-A4A4-88985ABF2363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A873263D-A73D-4A1D-A4A4-88985ABF2363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A873263D-A73D-4A1D-A4A4-88985ABF2363}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80ABB2BA-D8D3-493F-90A8-0405B0415CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80ABB2BA-D8D3-493F-90A8-0405B0415CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80ABB2BA-D8D3-493F-90A8-0405B0415CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80ABB2BA-D8D3-493F-90A8-0405B0415CD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
