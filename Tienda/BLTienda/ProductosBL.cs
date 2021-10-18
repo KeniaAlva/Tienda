@@ -68,14 +68,21 @@ namespace BLTienda
         }
         /*Creacion de una clase para guardar los productos, el cual se recibira un producto con parametro YA*/
 
-        public bool GuardarProducto(Producto producto)
+        public Resultado GuardarProducto(Producto producto)
         {
+            var resultado = Validar(producto);
+            if (resultado.Exitoso == false)
+            {
+                return resultado;
+            }
+
             if (producto.ID == 0)
             {
                 /*Funcion max se encarga de buscar  todos los productos y calcula el maximo id que encuentra*/
                 producto.ID = ListaProductos.Max(item => item.ID) + 1;
             }
-            return true;
+            resultado.Exitoso = true;
+            return resultado;
         }
 
         /*Agregar producto lo agregamos a producto bl  en una clase Yorlany Alva*/
@@ -104,6 +111,29 @@ namespace BLTienda
 
             return false;
         }
+        /* Creamos un metodo de tipo private resultado que se encargara de validar un producto*/
+          private Resultado Validar(Producto producto)
+        {
+            var resultado = new Resultado();
+            resultado.Exitoso = true;
+
+            if(string.IsNullOrEmpty(producto.Descripcion) == true)
+            {
+                resultado.Mensaje = "Ingrese una descripcion ";
+                resultado.Exitoso = false;
+            }
+            if (producto.Existencia < 0 )
+            {
+                resultado.Mensaje = "La existencia debe ser mayor de cero ";
+                resultado.Exitoso = false;
+            }
+            if (producto.Precio < 0)
+            {
+                resultado.Mensaje = "El precio debe ser mayor de cero ";
+                resultado.Exitoso = false;
+            }
+            return resultado;
+        }
     }
         /*Propiedades de los productos*/
     }
@@ -115,5 +145,11 @@ namespace BLTienda
         public int Existencia { get; set; }
         public bool Activo { get; set; }
       }
-   
+
+/* Creamos una nueva clase que lo que tendra es un resultado YA*/
+   public class Resultado
+{
+    public bool Exitoso { get; set; }
+    public string Mensaje { get; set; }
+}
     
