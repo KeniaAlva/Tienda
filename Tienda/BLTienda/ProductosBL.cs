@@ -10,28 +10,29 @@ namespace BLTienda
 {
     public class ProductosBL
     {
-        Contexto _contexto;
+        Contexto _contexto; //Declaramos variable contexto
+
         /*Creacion de Lista Binding (arreglo) para los productos*/
         public BindingList<Producto> ListaProductos { get; set; }
 
         public ProductosBL()
         {
-            _contexto = new Contexto();
+            _contexto = new Contexto(); //Instanciamos el contexto en el constructor
+
             /*Instanciamos la lista*/
             ListaProductos = new BindingList<Producto>();
 
-            /*Instanciamos productos en la lista y colocamos todos 
-             los datos del producto en sus propiedades.*/
+            /****Se han eliminado los datos de prueba****/
 
-           }
+        }
 
 
         public BindingList<Producto> ObtenerProductos()
         {
 
             /*Declaracion de la clase contexto*/
-            _contexto.Productos.Load();
-            ListaProductos = _contexto.Productos.Local.ToBindingList();
+            _contexto.Productos.Load();//Cargando datos a la tabla
+            ListaProductos = _contexto.Productos.Local.ToBindingList(); //Llenar la lista
 
             return ListaProductos;
         }
@@ -46,7 +47,7 @@ namespace BLTienda
             }
 
 
-            _contexto.SaveChanges();
+            _contexto.SaveChanges();//Agregando la clase contexto de nuestra base de datos y guardar cambios
 
             resultado.Exitoso = true;
             return resultado;
@@ -65,12 +66,12 @@ namespace BLTienda
         public bool EliminarProducto(int id)
         {
 
-            foreach (var producto in ListaProductos)
+            foreach (var producto in ListaProductos)//Foreach es una funcion que recorre listas de objetos
             {
                 if (producto.ID == id)
                 {
                     ListaProductos.Remove(producto);
-                    _contexto.SaveChanges();
+                    _contexto.SaveChanges();   // Se guardan los cambios para la base de datos contexto
                     return true;
 
                 }

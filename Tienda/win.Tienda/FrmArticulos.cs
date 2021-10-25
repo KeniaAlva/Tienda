@@ -45,7 +45,7 @@ namespace win.Tienda
                 listaProductosBindingSource.ResetBindings(false);
 
                 DeshabilitarHabilitarBotones(true);
-                MessageBox.Show("Producto Guardado");
+                MessageBox.Show("Producto Guardado"); // Mensaje cuando guardas registro de  producto
             }
             else
             {
@@ -62,6 +62,7 @@ namespace win.Tienda
             DeshabilitarHabilitarBotones(false);
         }
 
+        //Configuracion de los botones del formulario articulos
         private void DeshabilitarHabilitarBotones(bool valor)
         {
             bindingNavigatorMoveFirstItem.Enabled = valor;
@@ -80,8 +81,8 @@ namespace win.Tienda
         {
             /*  Como es un entero debemos  convertirlo*/
 
-            
-                if (iDTextBox.Text != "")
+            //estructura de confirmacion de sí o no para eliminar un registro
+            if (iDTextBox.Text != "")
                 {
 
                 var resultado = MessageBox.Show("Desea eliminar este registro?", "Eliminar", MessageBoxButtons.YesNo);
