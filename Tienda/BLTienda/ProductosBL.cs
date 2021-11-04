@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL.Tienda;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -6,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BLTienda
 {
     public class ProductosBL
     {
-        Contexto _contexto; //Declaramos variable contexto
+        Contexto _contexto;//Declaramos variable contexto
 
         /*Creacion de Lista Binding (arreglo) para los productos*/
         public BindingList<Producto> ListaProductos { get; set; }
@@ -29,13 +31,14 @@ namespace BLTienda
 
         public BindingList<Producto> ObtenerProductos()
         {
-
-            /*Declaracion de la clase contexto*/
-            _contexto.Productos.Load();//Cargando datos a la tabla
-            ListaProductos = _contexto.Productos.Local.ToBindingList(); //Llenar la lista
+            _contexto.Productos.Load();/*Cargando datos a la tabla*/
+            ListaProductos = _contexto.Productos.Local.ToBindingList(); //Llenar la lista*/
 
             return ListaProductos;
         }
+
+        
+
         /*Creacion de una clase para guardar los productos, el cual se recibira un producto con parametro YA*/
 
         public Resultado GuardarProducto(Producto producto)
@@ -112,11 +115,25 @@ namespace BLTienda
         public string Descripcion { get; set; }
         public double Precio { get; set; }
         public int Existencia { get; set; }
+        public int CategoriaId { get; set; }
+        public Categoria  Categoria { get; set; }
+        public int TipoId { get; set; }
+        public Tipo Tipo { get; set; }
+        public byte[] Foto { get; set; }
         public bool Activo { get; set; }
-      }
+      
+
+
+     public Producto()
+     {
+
+        Activo = true;
+}
+
+ }   
 
 /* Creamos una nueva clase que lo que tendra es un resultado YA*/
-   public class Resultado
+public class Resultado
 {
     public bool Exitoso { get; set; }
     public string Mensaje { get; set; }
