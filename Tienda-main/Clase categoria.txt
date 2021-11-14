@@ -1,0 +1,41 @@
+using System.ComponentModel;
+using System.Data.Entity;
+
+namespace BLTienda
+{
+    public class Categoria
+    {
+        Contexto _contexto;
+
+        public object ListaCategoria { get; private set; }
+        public BindingList<Categoria> ListaProductos { get; set; }
+        public BindingList<Categoria> ListaCategorias { get; private set; }
+
+        public Categoria()
+        {
+            _contexto = new Contexto(); //Instanciamos el contexto en el constructor
+
+            /*Instanciamos la lista*/
+            ListaProductos = new BindingList<Categoria>();
+
+
+        }
+
+
+        public BindingList<Categoria> ObtenerCategorias()
+        {
+            _contexto.Productos.Load();/*Cargando datos a la tabla*/
+            ListaProductos = _contexto.Categorias.Local.ToBindingList(); //Llenar la lista*/
+
+            return ListaCategorias;
+
+        }
+        }
+
+    public class Categorias
+    {
+        public int Id { get; set; }
+        public string Descripcion { get; set; }
+   
+} 
+    }
