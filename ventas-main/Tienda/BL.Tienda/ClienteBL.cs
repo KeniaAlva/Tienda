@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Data.Entity;
+using System.Linq;
 
 namespace BL.Tienda
 {
@@ -49,12 +50,12 @@ namespace BL.Tienda
         public void AgregarCliente()
         {
             var nuevoCliente = new Cliente();
-            ListaClientes.Add(nuevoCliente);
+            _contexto.Clientes.Add(nuevoCliente);
         }
 
         public bool EliminarCliente(int id)
         {
-            foreach (var cliente in ListaClientes)
+            foreach (var cliente in ListaClientes.ToList())
             {
                 if (cliente.Id == id)
                 {
@@ -71,9 +72,17 @@ namespace BL.Tienda
             var resultado = new Resultado();
             resultado.Exitoso = true;
 
+            if (cliente == null)
+            {
+                resultado.Mensaje = "Agregue un cliente válido.";
+                resultado.Exitoso = false;
+
+                return resultado;
+            }
+
             if (string.IsNullOrEmpty(cliente.Nombre) == true)
             {
-                resultado.Mensaje = "Ingrese un nombre";
+                resultado.Mensaje = "Ingrese un nombre para el cliente.";
                 resultado.Exitoso = false;
             }
 
@@ -86,6 +95,11 @@ namespace BL.Tienda
         public int Id { get; set; }
         public string Nombre { get; set; }
         public bool Activo { get; set; }
+
+        public Cliente()
+        {
+            Activo = true;
+        }
     }
 }
 

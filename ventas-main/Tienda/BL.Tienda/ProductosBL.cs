@@ -25,6 +25,17 @@ namespace BL.Tienda
             return ListaProductos;
         }
 
+        /*Creacion de metodo para el boton cancelar del formulario*/
+        public void CancelarCambios()
+        {
+            foreach (var item in _contexto.ChangeTracker.Entries())
+            {
+                item.State = EntityState.Unchanged;
+                item.Reload();
+            }
+        }
+
+
         //* Creacion de la funcion para guardar un nuevo producto*//
         public Resultado GuardarProducto(Producto producto)
         {
@@ -68,29 +79,37 @@ namespace BL.Tienda
             var resultado = new Resultado();
             resultado.Exitoso = true;
 
+            if (producto == null)
+            {
+                resultado.Mensaje = "Agregue un producto válido.";
+                resultado.Exitoso = false;
+
+                return resultado;
+            }
+
             if (string.IsNullOrEmpty(producto.Descripcion )== true) 
             {
-                resultado.Mensaje = "Ingrese una descripcion";
+                resultado.Mensaje = "Ingrese una descripcion.";
                 resultado.Exitoso = false;
             }
 
 
             if (producto.Existencia  < 0)
             {
-                resultado.Mensaje = "La existencia debe ser mayor que cero";
+                resultado.Mensaje = "La existencia debe ser mayor que cero.";
                 resultado.Exitoso = false;
             }
 
 
             if (producto.Precio < 0)
             {
-                resultado.Mensaje = "El precio debe ser mayor que cero";
+                resultado.Mensaje = "El precio debe ser mayor que cero.";
                 resultado.Exitoso = false;
             }
 
             if (producto.CategoriaId == 0)
             {
-                resultado.Mensaje = "Seleccione una categoria";
+                resultado.Mensaje = "Seleccione una categoria.";
                 resultado.Exitoso = false;
             }
 

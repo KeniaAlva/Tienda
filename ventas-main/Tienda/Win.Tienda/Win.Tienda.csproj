@@ -147,6 +147,8 @@
     <None Include="Properties\DataSources\BL.Tienda.Cliente.datasource" />
     <None Include="Properties\DataSources\BL.Tienda.ClienteBL.datasource" />
     <None Include="Properties\DataSources\BL.Tienda.Contexto.datasource" />
+    <None Include="Properties\DataSources\BL.Tienda.FacturaBL.datasource" />
+    <None Include="Properties\DataSources\BL.Tienda.FacturaDetalle.datasource" />
     <None Include="Properties\DataSources\BL.Tienda.Producto.datasource" />
     <None Include="Properties\DataSources\BL.Tienda.ProductosBL.datasource" />
     <None Include="Properties\DataSources\BL.Tienda.Resutado.datasource" />

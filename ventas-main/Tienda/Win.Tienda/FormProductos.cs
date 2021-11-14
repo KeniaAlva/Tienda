@@ -33,7 +33,7 @@ namespace Win.Tienda
             ListacategoriaBindingSource.DataSource = _categorias.ObtenerCategorias();
 
             _tipos = new TipoBL();
-            ListatipoBindingSource.DataSource = _tipos.Obtenertipos();
+            listatipoBindingSource.DataSource = _tipos.Obtenertipos();
 
         }
 
@@ -57,7 +57,7 @@ namespace Win.Tienda
             {
                 listaProductosBindingSource.ResetBindings(false);
                 DesahabilitarHabilitarBotones(true);
-                MessageBox.Show("Producto guardado");
+                MessageBox.Show("Producto guardado.");
             }
             else
             {
@@ -121,6 +121,7 @@ namespace Win.Tienda
 
         private void toolStripButtonCancelar_Click(object sender, EventArgs e)
         {
+            _productos.CancelarCambios();
             DesahabilitarHabilitarBotones(true);
 
         }
@@ -153,7 +154,7 @@ namespace Win.Tienda
 
         private void button2_Click(object sender, EventArgs e)
         {
-            fotoPictureBox = null;
+            fotoPictureBox.Image = null;
         }
 
         private void fotoPictureBox_Click(object sender, EventArgs e)
@@ -162,6 +163,16 @@ namespace Win.Tienda
         }
 
         private void idTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormProductos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void categoriaIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

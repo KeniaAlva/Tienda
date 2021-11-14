@@ -14,7 +14,7 @@ namespace Win.Tienda
 {
     public partial class FormClientes : Form
     {
-        ClienteBL _cliente;
+        ClienteBL _clientesBL;
 
 
         public FormClientes()
@@ -22,22 +22,22 @@ namespace Win.Tienda
         {
             InitializeComponent();
 
-            _cliente = new ClienteBL();
-            ListaClientesBindingSource.DataSource = _cliente.ObtenerClientes();
+            _clientesBL = new ClienteBL();
+            listaClientesBindingSource.DataSource = _clientesBL.ObtenerClientes();
         }
 
         private void listaClientesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            ListaClientesBindingSource.EndEdit();
-            var cliente = (Cliente)ListaClientesBindingSource.Current;
+            listaClientesBindingSource.EndEdit();
+            var cliente = (Cliente)listaClientesBindingSource.Current;
 
-            var resultado = _cliente.GuardarCliente(cliente);
+            var resultado = _clientesBL.GuardarCliente(cliente);
 
             if (resultado.Exitoso == true)
             {
-                ListaClientesBindingSource.ResetBindings(false);
+                listaClientesBindingSource.ResetBindings(false);
                 DeshabilitarHabilitarBotones(true);
-                MessageBox.Show("Cliente Guardado");
+                MessageBox.Show("Cliente guardado");
             }
             else
             {
@@ -45,12 +45,7 @@ namespace Win.Tienda
             }
         }
 
-        private void listaClientesbindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            _cliente.AgregarCliente();
-            ListaClientesBindingSource.MoveLast();
-            DeshabilitarHabilitarBotones(false);
-        }
+
         private void DeshabilitarHabilitarBotones(bool valor)
         {
             bindingNavigatorMoveFirstItem.Enabled = valor;
@@ -79,37 +74,34 @@ namespace Win.Tienda
 
         private void Eliminar(int id)
         {
-            var resultado = _cliente.EliminarCliente(id);
+            var resultado = _clientesBL.EliminarCliente(id);
 
             if (resultado == true)
             {
-                ListaClientesBindingSource.ResetBindings(false);
+                listaClientesBindingSource.ResetBindings(false);
             }
             else
             {
                 MessageBox.Show("Ocurrio un error al eliminar el Cliente");
             }
         }
-        private void toolStripButtonCancelar_Click(object sender, EventArgs e)
-        {
-            
-            _cliente.CancelarCambios();
-            DeshabilitarHabilitarBotones(true);
-        }
-
-        
 
         private void toolStripButtonCancelar_Click_1(object sender, EventArgs e)
         {
-            _cliente.CancelarCambios();
+            _clientesBL.CancelarCambios();
             DeshabilitarHabilitarBotones(true);
         }
 
         private void AgregarClientebindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            _cliente.AgregarCliente();
-            ListaClientesBindingSource.MoveLast();
+            _clientesBL.AgregarCliente();
+            listaClientesBindingSource.MoveLast();
             DeshabilitarHabilitarBotones(false);
+        }
+
+        private void idTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
