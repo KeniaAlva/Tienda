@@ -176,6 +176,23 @@ namespace Win.Tienda
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string buscar = textBox1.Text;    //*Capturamos lo del textbox1*//
+
+            if (buscar != "")               //Creamos una condicion*//
+            {
+
+                listaProductosBindingSource.DataSource = _productos.ObtenerProductos(buscar);
+            }
+            else
+            {
+                listaProductosBindingSource.DataSource = _productos.ObtenerProductos();   // lo que estamos haciendo es cargando el bindingsource**/
+            }
+
+            listaProductosBindingSource.ResetBindings(false);
+        }
     }
 
 }

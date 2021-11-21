@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Data.Entity;
+using System.Linq;
 
 namespace BL.Tienda
 {
@@ -17,13 +18,22 @@ namespace BL.Tienda
             //* Datos de prueba fueron eliminados*//
         }
 
-        public BindingList<Producto> ObtenerProductos()
+        public BindingList<Producto> ObtenerProductos() 
         {
             _contexto.Productos.Load();           //* Carga los productos*//
             ListaProductos = _contexto.Productos.Local.ToBindingList();   //*LLenamos la lista de productos*//
 
             return ListaProductos;
         }
+
+        public BindingList<Producto> ObtenerProductos(string buscar)
+        {
+            
+           var resultado  = _contexto.Productos.Where(r => r.Descripcion.Contains(buscar));   //*Creamos una variable resultado*//
+
+            return new BindingList<Producto>(resultado.ToList());
+        }
+
 
         /*Creacion de metodo para el boton cancelar del formulario*/
         public void CancelarCambios()
